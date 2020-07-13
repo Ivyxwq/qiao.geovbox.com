@@ -3,8 +3,10 @@ title: "主页"
 ---
 
 # 徐雯峤的个人主页
+
+{{< figure src="xuwenqiao.png" title=""  width="150px" >}}
+
 **个人标签** 高性能计算、数值模拟、构造模拟、岩土、地质。
-<!--<img src="xuwenqiao.png" class="inline" width="100" height="100" style="height: 100px;height: 100px;margin-bottom:.25em; vertical-align:middle; ">-->
 
 
 本网站主要记录徐雯峤在南京大学尹宏伟课题组 **Rocks集群管理** 及 **网站建设** 的经验。
