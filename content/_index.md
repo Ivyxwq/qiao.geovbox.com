@@ -8,7 +8,7 @@ title: "主页"
 
 VBOX维护 [https://geovbox.com](https://geovbox.com)
 
-- 2019年-至今 南京大学 地球探测与信息技术 硕士 方向：离散元构造相关的数值模拟
+- 2019年-至今 南京大学 地球探测与信息技术 硕士 方向：构造相关的离散元数值模拟
 - 2015-2019 中国石油大学（华东） 理科实验班（数理） 本科
 
 
@@ -18,5 +18,5 @@ VBOX维护 [https://geovbox.com](https://geovbox.com)
 
 
 {{% notice note %}}
-更详细的个人介绍见 [徐雯峤@geovbox](https://geovbox.com/about/Xuwenqiao/)
+更详细的个人介绍见 [徐雯峤@geovbox](https://geovbox.com/about/xuwenqiao/)
 {{% /notice %}}
