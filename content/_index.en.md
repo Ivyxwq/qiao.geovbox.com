@@ -4,7 +4,7 @@ title: "主页"
 
 # 个人主页
 
-{{< figure src="xuwneqiao.png" title=""  width="150px" >}}
+{{< figure src="xuwenqiao.png" title=""  width="150px" >}}
 
 
 VBOX维护 [https://geovbox.com](https://geovbox.com)
