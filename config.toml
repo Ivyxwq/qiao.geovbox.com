@@ -1,18 +1,18 @@
 #https://demsheng.github.io/demsheng.org/
-baseURL = "https://sheng.geovbox.com/"
+baseURL = "https://qiao.geovbox.com/"
 languageCode = "en-US"
 defaultContentLanguage = "zh-cn"
 
-title = "李长圣"
+title = "徐雯峤"
 theme = "hugo-theme-learn"
 themesdir = "./themes"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= false
 
 [params]
-  editURL = "https://github.com/demsheng/demsheng.org/edit/master/content/"
-  description = "李长圣的个人主页"
-  author = "李长圣"
+  editURL = "https://github.com/Ivyxwq/Ivyxwq.org/edit/master/content/"
+  description = "徐雯峤的个人主页"
+  author = "徐雯峤"
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
