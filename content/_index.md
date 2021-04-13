@@ -12,7 +12,7 @@ VBOX维护 [https://geovbox.com](https://geovbox.com)
 - 2015-2019 中国石油大学（华东） 理科实验班（数理） 本科
 
 
-邮箱： `326306955@qq.com` `mg1929066@smail.nju.edu.cn`  
+邮箱： `326306955@qq.com` `Ivyxwq@smail.nju.edu.cn`  
 我的 [GitHub](https://github.com/Ivyxwq) 
 
 
