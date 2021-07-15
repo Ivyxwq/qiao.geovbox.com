@@ -1,6 +1,6 @@
 # https://qiao.geovbox.com
 
-[![Build Status](https://travis-ci.org/Ivyxwq/qiao.geovbox.com.svg?branch=master)](https://travis-ci.org/Ivyxwq/qiao.geovbox.com)
+[![Deploy](https://github.com/Ivyxwq/qiao.geovbox.com/actions/workflows/deploy.yml/badge.svg)](https://github.com/Ivyxwq/qiao.geovbox.com/actions/workflows/deploy.yml)
 
 徐雯峤的个人主页
 
