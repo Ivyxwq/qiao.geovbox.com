@@ -19,5 +19,5 @@ VBOX维护 [https://geovbox.com](https://geovbox.com)
 
 
 {{% notice note %}}
-更详细的个人介绍见 [徐雯峤@geovbox](https://geovbox.com/about/Xuwenqiao/)
+更详细的个人介绍见 [徐雯峤@geovbox](https://geovbox.com/about/xuwenqiao/)
 {{% /notice %}}
