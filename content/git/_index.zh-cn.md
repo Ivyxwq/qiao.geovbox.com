@@ -4,7 +4,7 @@ weight: 4
 pre: "<b></b>"
 ---
 
-李长圣学习Git的笔记。
+Ivyxwq学习Git的笔记。
 
 * [搭建Git服务器 ]({{%relref "init/_index.zh-cn.md" %}})
 * [多个git账号的登录与切换]({{%relref "multuser/_index.zh-cn.md" %}})
@@ -13,6 +13,18 @@ pre: "<b></b>"
 	```
 	git config --global user.name "geovbox"
 	git config --global user.email "geovbox@163.com"
+	```
+	
+* 本地仓库pull+push
+	```
+	git remote add origin https://github.com/Ivyxwq/git.git
+	git clone https://github.com/Ivyxwq/qiao.geovbox.com
+	git pull origin master先将远程仓库master中的信息同步到本地仓库master中
+	git status 查看工作区代码相对于暂存区的差别
+	git add . 将当前目录下修改的所有代码从工作区添加到暂存区 . 代表当前目录
+	git commit -m ‘注释’ 将缓存区内容添加到本地仓库
+	git push origin master 将本地版本库推送到远程服务器
+	密码要记得使用TOKEN
 	```
 	
 * 重命名文件夹/文件 
