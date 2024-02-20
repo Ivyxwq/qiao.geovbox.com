@@ -1,0 +1,64 @@
+[
+{
+	"uri": "https://qiao.geovbox.com/git/init/",
+	"title": "搭建Git服务器",
+	"tags": [],
+	"description": "",
+	"content": " 在服务器\n git init --bare ~/git/sample.git  克隆项目到本地\n git clone zhangsan@ip:~/git/sample.git   "
+},
+{
+	"uri": "https://qiao.geovbox.com/git/multuser/",
+	"title": "多个git账号的登录与切换",
+	"tags": [],
+	"description": "",
+	"content": "Ref https://blog.csdn.net/qq_36602939/article/details/79794686\n 新建user1的SSH Key\n生成密钥\nssh-keygen -t rsa -C \u0026quot;geovbox@163.com\u0026quot;  看见两个文件： id_rsa id_rsa.pub 复制密钥 id_rsa.pub 到git账号里。\n 新建user2的SSH Key\n#新建SSH key： $ cd ~/.ssh ssh-keygen -t rsa -C \u0026quot;sheng0619@163.com\u0026quot; # 新建工作的SSH key # 设置名称为id_rsa_demsheng Enter file in which to save the key (~/.ssh/id_rsa): id_rsa_demsheng  新密钥添加到SSH agent中 因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：\nssh-add ~/.ssh/id_rsa_demsheng  如果出现Could not open a connection to your authentication agent的错误，就试着用以下命令：\nssh-agent bash ssh-add ~/.ssh/id_rsa_work  修改config文件\n在~/.ssh目录下找到config文件，如果没有就创建：\ntouch config # 创建config  然后修改如下： 我的config配置如下：\n# 该文件用于配置私钥对应的服务器 # Default github user(first@mail.com) Host github.com HostName github.com User git IdentityFile /home/lichangsheng/.ssh/id_rsa # second user(second@mail.com) # 建一个github别名，新建的帐号使用这个别名做克隆和更新 Host demsheng.github.com HostName github.com User git IdentityFile /home/lichangsheng/.ssh/id_rsa_demsheng  其规则就是：从上至下读取config的内容，在每个Host下寻找对应的私钥。这里将GitHub SSH仓库地址中的git@github.com替换成新建的Host别名如：demsheng.github.com，那么原地址是：git@github.com:demsheng/sheng.git，替换后应该是：demsheng.github.com:funpeng/sheng.git.\n 打开新生成的~/.ssh/id_rsa_demsheng.pub文件，将里面的内容添加到GitHub后台。\n 以下命令可以检查当前用户： ssh -T git@github.com ssh -T git@demsheng.github.com\n 以下命令可以检查当前秘钥： ssh-add -l\n  "
+},
+{
+	"uri": "https://qiao.geovbox.com/git/fork/",
+	"title": "fork后，更新到原作者的主分支",
+	"tags": [],
+	"description": "",
+	"content": "Github上 fork了别人的代码 本地更新主分支代码 在GitHub上我们会去fork别人的一个项目，这就在自己的Github上生成了一个与原作者项目互不影响的副本，自己可以将自己Github上的这个项目再clone到本地进行修改，修改后再push，只有自己Github上的项目会发生改变，而原作者项目并不会受影响，避免了原作者项目被污染。但经过一段时间， 有可能作者原来的代码变化很大， 你想接着在他最新的代码上修改， 这时你需要合并原作者的最新代码过来， 让你的项目变成最新的。\n 先克隆项目到本地\n Git clone https://github.com/demsheng/trunk cd trunk  添加原作者项目的 remote 地址， 然后将代码 fetch 过来\n git remote add yade https://github.com/yade/trunk git fetch yade  yade 相当于一个别名 查看本地项目目录： git remote -v\n 合并\n git checkout master git merge yade/master 如果有冲突的话，需要丢掉本地分支： git reset –hard yade/master  这时你的当前本地的项目变成和原作者的主项目一样了，可以把它提交到你的GitHub库\ngit commit -am '更新到原作者的主分支' git push origin git push -u origin master -f –强制提交  同步标签\ngit push origin --tags  修改远程仓库地址\ngit remote set-url origin git@demsheng.github.com:demsheng/trunk.git   "
+},
+{
+	"uri": "https://qiao.geovbox.com/git/port/",
+	"title": "修改默认端口号",
+	"tags": [],
+	"description": "",
+	"content": "由于安全或者其它原因，我们可能会修改默认的SSH服务端口号，默认情况下，已有的git项目在pull或者push的时候会报错。现在假设原来的项目的remote设置为git@www.xxx.com:marks/web.git，将服务器SSH默认端口修改为1234后，导致push出错。有三种解决方式：\n 直接修改URL为SSH://开头\n git remote set-url origin ssh://git@www.xxx.com:1234/marks/web.git  修改本地配置文件\n #映射一个别名 vi ~/.ssh/confighost xxxhostname www.xxx.comport 1234  克隆仓库的时候直接指定端口\n git clone ssh://git@www.xxx.com:1234/marks/web.git   作者：marksdev\n链接：https://www.jianshu.com/p/b3dcd55ddc9d\n来源：简书\n简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。\n"
+},
+{
+	"uri": "https://qiao.geovbox.com/git/",
+	"title": "Git笔记",
+	"tags": [],
+	"description": "",
+	"content": "Ivyxwq学习Git的笔记。\n 搭建Git服务器  多个git账号的登录与切换 fork后，更新到原作者的主分支 设置用户\ngit config --global user.name \u0026quot;geovbox\u0026quot; git config --global user.email \u0026quot;geovbox@163.com\u0026quot;  本地仓库pull+push\ngit remote add origin https://github.com/Ivyxwq/git.git git clone https://github.com/Ivyxwq/qiao.geovbox.com git pull origin master先将远程仓库master中的信息同步到本地仓库master中 git status 查看工作区代码相对于暂存区的差别 git add . 将当前目录下修改的所有代码从工作区添加到暂存区 . 代表当前目录 git commit -m ‘注释’ 将缓存区内容添加到本地仓库 git push origin master 将本地版本库推送到远程服务器 密码要记得使用TOKEN  重命名文件夹/文件\ngit mv -f content/rocks/advance/ content/rocks/share`  修改 Git 远程仓库地址 gedit .git/config\n[core] repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true [remote \u0026quot;origin\u0026quot;] fetch = +refs/heads/*:refs/remotes/origin/* #设置使用哪个远程库 url = ssh://li_changsheng@ip:1234/home/vpost.git # url = https://github.com/demsheng/vpost.git [branch \u0026quot;master\u0026quot;] remote = origin merge = refs/heads/master  修改默认端口号\n  "
+},
+{
+	"uri": "https://qiao.geovbox.com/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://qiao.geovbox.com/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://qiao.geovbox.com/",
+	"title": "主页",
+	"tags": [],
+	"description": "",
+	"content": " 个人主页   VBOX维护 https://geovbox.com\n邮箱： 326306955@qq.com Ivyxwq@smail.nju.edu.cn\n我的 GitHub\n教育经历  2023.11~2024.02 法国巴黎地球物理学院（IPGP,CNRS) Tectonics lab （短期交流） 2019.09~至今 南京大学 地球探测与信息技术 （硕博连读）\n 2015.09~2019.07 中国石油大学（华东） 理科实验班（数理) （本科）\n  专利和软件著作权  发明专利：李长圣,尹宏伟,吴珍云,贾东,徐雯峤,汪伟. 一种基于离散元的裂谷盆地伸展过程模拟方法[P]. 江西省：CN111008472A,2020-04-14 (授权) 软件著作权：离散元数值模拟后处理系统 V1.0. 东华理工大学, 钟军, 李长圣,徐雯峤, 魏华敬, 吴珍云. 2021.  论文发表  2024\n Xu, W., Yin, H.*, Zhao, S.,Zhang, C., Li, B., Jia, D., Li, C., Wang, W., 2024. Influence of multiple detachments on structural vergence and evolution of the thin-skinned fold-and-thrust belt in the eastern Sichuan Basin: Insights from numerical modeling,Journal of Structural Geology,180:105068.  2023\n 尹宏伟,贾东,汪伟,李长圣,徐雯峤,杨庚兄,贺婉慧.数值模拟在沉积盆地褶皱冲断构造变形研究中的应用与发展.地质学报,2023,97(09):2914-2926.  2023\n 吴超,徐雯峤*, 李青,汪伟,陈维力,尹宏伟,屈元基.库车坳陷克深地区先存被动盐底辟挤压变形数值模拟.高校地质学报,2023,29(02):240-250.   2023\n 赵圣贤,徐雯峤*,杨学锋,尹宏伟,李博,汪伟,张成林,贾东,刘永旸,谢伟,张洞君,李长圣.川东南泸州地区多滑脱层构造特征及变形机制.高校地质学报,2023,29(05):726-734.  2022\n 李长圣,尹宏伟*,徐雯峤,吴珍云,管树巍,贾 东,任 荣. 2022. 基于离散元的挤压构造定量分析与模拟. 大地构造与成矿学, 46(04): 645-661.  2022\n Yang, G., Yin, H., Gan, J., Wang, W., Zhu, J., Jia, D., Xiong, X., Xu, W., 2022. Explaining structural difference between the eastern and western zones of the Qiongdongnan Basin, northern South China Sea: Insights from scaled physical models. Tectonics, 41, e2021TC006899.  2021\n Xu, W., Yin, H.*, Jia, D., Li, C., Wang, W., Yang, G., He, W., Chen, Z., Ren, R., 2021. Structural Features and Evolution of the Northwestern Sichuan Basin: Insights From Discrete Numerical Simulations. Frontiers in Earth Science, 9:653395.   2020\n 徐雯峤,汪伟*,尹宏伟,贾东,李长圣,杨庚兄,李刚.库车坳陷东西段盐下构造变形差异演化数值模拟分析.地质学报, 2020, 94(06): 1740-1751. \n  2019\n 徐雯峤 (2019) 基于离散元数值模拟方法研究构造转换带变形特征与变形机制. 本科论文. 南京大学.   会议  徐雯峤,尹宏伟,赵圣贤等.川东褶皱冲断带多滑脱层构造特征及其变形机制：来自数值模拟的启示. 2023年中国地球科学联合学术年会论文集, 2023 （报告+论文） Xu, W., Yin, H.， “Application of Discrete Element Numerical Simulation in Fold and Thrust Belts”; Oral presentation on Society for Industrial and Applied Mathematics 2022 Annual Meeting: Recent Advances in Computational Geosciences; Virtual, July 2022 徐雯峤,尹宏伟,李长圣.塔里木盆地库车坳陷中西段盐相关构造特征及控制因素：基于离散元数值模拟的认识. 2021年中国地球科学联合学术年会论文集, 2021 （论文） 徐雯峤,尹宏伟,汪伟等.库车坳陷西段构造变形演化的数值模拟. 2020年中国地球科学联合学术年会论文集, 重庆，2020（展板+论文） 徐雯峤，尹宏伟*，李长圣，汪伟. 构造转换带变形特征与变形机制：基于离散元数值模拟的认识. 2019中国地球科学联合学术年会论文集, 北京, 2019.（报告+论文）  科研项目  克拉通盆地深层古裂陷与隆起演变机制模拟，中国石油勘探开发研究院，2019-至今，参与 构造演化数值模拟实验, 2019.06-2019.08, 中国地质大学（北京）, 参与  其他论文  周广旭,张楚楚,徐雯峤,董开拓,朱海丰,刘鹏.低压氢等离子体发光光谱.原子与分子物理学报,2019,36(01):73-81.\n  奖励  2023年度优秀研究生 模范党员 南京大学博士英才奖学金 南京大学硕士英才奖学金 南京大学优秀共青团员 2020年度优秀研究生 2018年国家奖学金 2018年美国大学生数学建模大赛Finalist特等奖提名奖 2017年国家奖学金 2016年国家奖学金  更详细的个人介绍见 徐雯峤@geovbox\n"
+},
+{
+	"uri": "https://qiao.geovbox.com/credits/",
+	"title": "致谢",
+	"tags": [],
+	"description": "",
+	"content": " 致谢 And a special thanks to @vjeantet for his work on docdock, a fork of hugo-theme-learn. v2.0.0 of this theme is inspired by his work.\n软件包和库  mermaid - generation of diagram and flowchart from text in a similar manner as markdown font awesome - the iconic font and CSS framework jQuery - The Write Less, Do More, JavaScript Library lunr - Lunr enables you to provide a great search experience without the need for external, server-side, search services\u0026hellip; horsey - Progressive and customizable autocomplete component clipboard.js - copy text to clipboard highlight.js - Javascript syntax highlighter modernizr - A JavaScript toolkit that allows web developers to use new CSS3 and HTML5 features while maintaining a fine level of control over browsers that don\u0026rsquo;t support  工具  Netlify - Continuous deployement and hosting of this documentation Hugo  "
+}]
